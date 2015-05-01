@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+
+.menu1{
+width:120px;
+height:auto;
+margin:6px 4px 0px 0px;
+border:1px solid #9CDD75;
+background-color:#F1FBEC;
+color:#336601;
+padding:6px 0px 0px 0px;
+cursor:hand;
+overflow-y:hidden;
+filter:Alpha(opacity=30);
+-moz-opacity:0.7;
+}
+.menu2{
+width:120px;
+height:18px;
+margin:6px 4px 0px 0px;
+background-color:#F5F5F5;
+color:#999999;
+border:1px solid #EEE8DD;
+padding:6px 0px 0px 0px;
+overflow-y:hidden;
+cursor:hand;
+}
+
+
+
+
+
+
+
+
+
+
+

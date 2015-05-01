@@ -1,0 +1,57 @@
+
+
+.tree_table{
+	border: 1px solid #BBBBBB;
+	border-collapse: collapse;	
+}
+.title_tr{height: 30px;}
+.tool_title_td{text-align: center;vertical-align: bottom;}
+.tool_title_div{font-size: 16px;font-weight: bolder;}
+.log_tr{border: 1px solid #BBBBBB;}
+.conn_tr{height: 50px;}	
+
+.dbInfo_table{width: 900px;height:50px;font-size: 12px;}
+.dbInfo_tr{height: 24px;}
+.dbInfo_td{border: 0px solid #BBBBBB;padding: 0px;}
+.dbInfo_td_left{text-align: right;padding-right: 3px;}
+.dbInfo_td_right{text-align: left;padding-left: 0px;}
+.dbInfo_td input{width: auto;margin: 1px;}
+.dbInfo_td_right_big input{width: 95%;margin: 3px;}
+.dbMakeCode_td_left{text-align: right;padding-right: 3px;width: 50px;}
+
+.log_td{border: 1px solid #BBBBBB;text-align: left;vertical-align: bottom;}
+.tool_tr{height: 20px;}
+.log_page{
+	border: 1px solid #BBBBBB;
+}
+.node_table{
+	border: 1px solid #BBBBBB;
+	border-collapse: collapse;
+	width: 250px;
+	height: 100px;
+}
+.node_tr{border: 1px solid #BBBBBB;height: 24px;}
+.node_tr td{border: 1px solid #BBBBBB;}
+.node_td_name{text-align: right;width: 100px;padding-right: 3px;}
+.node_td_input{text-align: left;width: 150px;padding-left: 0px;}
+.node_td_input input{width: 97%;border: 0px;padding-left: 3px;border-bottom: 0px solid #BBBBBB;}
+
+/* 数据库 表*/
+.tableVoCss{border: 1px solid #BBBBBB;border-collapse: collapse;font-size: 12px;background-color: #FFFFFF;}
+.tableVoTrCss{border: 1px solid #BBBBBB;height: 20px;}
+.tableVoThCss{height: 22px;background-color: #DEDEDE;cursor: pointer;}
+.tableVoTrTdCss{border: 1px solid #BBBBBB;}
+.tableVoDelCss{height: 10px;}
+.dbTypeIcon{background: url("../../images/db/table.gif") no-repeat;
+cursor: pointer;width: 16px;height: 16px;float: left;margin: 2px;}
+.headInput{margin-left:3px;height:16px;border: 0px solid #BBBBBB;text-align: left;}
+.dbdela{background: url("../../images/db/close.gif") no-repeat;
+cursor: pointer;width: 16px;height: 16px;float: right;margin: 2px;}
+
+.tableVoTrCss .left{width: 40%;border: 0px solid #BBBBBB;text-align: left;}
+.tableVoTrCss .right{width: 97%;border: 0px solid #BBBBBB;text-align: center;}
+.tvLeft{text-align: left;padding-left: 3px;width:auto;min-width: 50px;}
+.tvRight{text-align: left;padding-left: 3px;min-width: 50px;}
+.tableVoTrTdCss .column{width: 95%;border: 0px solid #BBBBBB;}
+
+

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:aop="http://www.springframework.org/schema/aop"   
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:jee="http://www.springframework.org/schema/jee"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="    
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">  
+        
+	<aop:aspectj-autoproxy />
+
+	<!-- 用注解方式注入bean -->
+	<context:annotation-config />
+	<!-- 基于注解自动扫描组件 -->
+	<context:component-scan base-package="com.mc" annotation-config="true">  
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan> 
+
+	<!-- hibernate属性配置文件 多个可以用逗号分割 -->
+	<context:property-placeholder location="classpath:config/db/jdbc.properties" />
+
+	<!-- 数据库连接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>${hibernate.jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${hibernate.jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${hibernate.jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${hibernate.jdbc.password}</value>
+		</property>
+	</bean>
+
+	<!-- 注册SessionFactory 使用JPA注解就不能使用LocalSessionFactoryBean,而对于Hibernate4,AnnotationSessionFactoryBean和LocalSessionFactoryBean统一合并为LocalSessionFactoryBean了 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
+		scope="singleton">
+		
+		<!-- 数据库连接 -->
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		
+		<!-- hibernate自身属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.connection.autocommit">${hibernate.connection.autocommit}</prop>
+				<!-- 解决no session found --> 
+                <!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
+                <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+                
+                <!-- 配置cache  -->
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.secondlevelcache}</prop>
+                <prop key="hibernate.cache.use_query_cache">${hibernate.querycache}</prop>
+                <prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+                
+                <prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop>
+                <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+                
+                
+                
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>com.mc</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 注册Spring的模版对象 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- cacheManager, 指定ehcache.xml的位置 -->
+	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<!-- 配置缓存配置文件路径 -->
+		<property name="configLocation" value="classpath:config/db/ehcache.xml"/>
+		
+		<!-- 由于hibernate也使用了Ehcache, 保证双方都使用同一个缓存管理器 -->
+		<property name="shared" value="true"/>
+		
+	</bean>
+	
+</beans>

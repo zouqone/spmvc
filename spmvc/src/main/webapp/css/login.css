@@ -1,0 +1,31 @@
+
+
+/* ========================登录页面============================ */
+.login_div{top:0px;left:px;width: 400px;height: 280px;position: absolute;
+z-index: 1000;border: 1px solid #A0C792;background-color: #FFFFFF;
+vertical-align: middle;box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+background-color: #F6F6F6;
+}
+.login_table{width:300px;height:180px;margin-left:auto;margin-right:auto;
+margin-top:20px;
+border: 1px solid #BBBBBB;border-collapse:collapse;
+
+}
+.tdleft{width: 90px;}
+.input_text{ 
+	border: 1px solid #BBBBBB;width: 150px;margin-left: 10px;height: 22px;
+	padding-left: 3px;
+	
+}
+.input_text_code{
+	border: 1px solid #BBBBBB;width: 50px;margin-left: 10px;height: 22px;
+	padding-left: 3px;
+}
+.input_button{ 
+	border: 1px solid #BBBBBB;width: 50px;height: 26px;cursor: pointer;
+	
+}
+.show_clock_shade{position: absolute;background-color: #D9DCC7;z-index: 2;}
+.messagecss{font-size: 11px;color: red;}
+
+

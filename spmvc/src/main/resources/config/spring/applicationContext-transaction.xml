@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xmlns:aop="http://www.springframework.org/schema/aop"   
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:jee="http://www.springframework.org/schema/jee"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="    
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">  
+        
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<!-- Hibernate4的TransactionManager需要配置dataSource,而hibernate3只需要配置一个SessionFactory -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 开启AOP监听 指定使用aspectj方式 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+
+	<!-- 配置事务的传播行为 : 事务通知操作，使用的事务管理器引用自 transactionManager-->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 指定哪些方法需要加入事务，这里懒惰一下全部加入，可以使用通配符来只加入需要的方法 -->  
+		<tx:attributes>
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="add*" propagation="REQUIRED" read-only="false" rollback-for="Exception" />
+			<tx:method name="edit*" propagation="REQUIRED" read-only="false" rollback-for="Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+			<tx:method name="save*" propagation="REQUIRED" read-only="false" rollback-for="Exception" />
+			<tx:method name="update*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+			<tx:method name="delete*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+			<tx:method name="batch*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+			<tx:method name="bulk*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+			<tx:method name="create*" propagation="REQUIRED" read-only="false" rollback-for="RuntimeException"/>
+			<tx:method name="insert*" propagation="REQUIRED" read-only="false" rollback-for="Exception"/>
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+
+	<!-- 配置事务切入点 -->
+	<aop:config>
+		<!-- 切入点指明了在执行Service的所有方法时产生事务拦截操作 -->
+		<!-- 系统内部拦截 -->
+		<aop:pointcut id="targetMethod" expression="execution(* com.mc.sys.service.impl.*.*(..))" />
+		
+		<!-- 定义了将采用何种拦截操作，这里引用到 txAdvice -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="targetMethod" />
+		
+	</aop:config>
+	
+</beans>

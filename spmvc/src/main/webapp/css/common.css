@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+
+/* ======================主页面============================ */
+* {margin:0px; padding: 0;font-family: Arial,Helvetica,sans-serif;}
+.page_div{text-align: center;margin:0;padding-top:3px;background-color: #F2F2F2;;width: 99.8%;height: auto;border: 1px solid #BBBBBB;}
+.tool_div{font-size:14px;text-align:right;padding:0px;width: 99.8%;height:30px;
+background: none repeat scroll 0 0 #99CC00;border: 1px solid #BBBBBB;}
+.tool_table{width: 100%;height: auto;}
+.tool_tr{height: 30px;}
+.tool_left_td{width: auto;text-align: left;padding-left: 5px;font-weight: bold;}
+.tool_a{margin-right: 5px;width:24px;height:30px;text-decoration: none;cursor: pointer;}
+.tool_a .fresh_div{background-image: url("../images/freshb.png")}
+.tool_right_td{width:160px;text-align: left;padding-left: 5px; }
+.user_p{color: #0000CC;font-weight: bold;}
+.user_a{text-decoration: none;}
+
+.log_context{background: none repeat scroll 0 0 #E2FFCA;}
+.svn_table{width: 100%;border-collapse:collapse;margin: 0 auto;padding-top: 2px;border: 1px solid #BBBBBB;}
+.log_tr{height: auto;}
+.log_item_td{width: 200px;vertical-align: top;}
+.log_item{margin:5px;width: 190px;cursor:pointer;display: table; table-layout: fixed;}
+.buttonbk{background-color:#DBE5E5;}
+.select_buttonbk{background-color:#FF4400;}
+.log_item p{height: auto;vertical-align:middle;padding-top:3px;padding-bottom: 5px; }
+.log_page{width: auto;padding: 3px;}
+.log_page iframe{width: 99.5%; height: 550px;text-align: center;background-color:#FFFFFF }
+.box_shadow{
+	border-radius: 7px;
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=135, Strength=5);/*for ie6,7,8*/
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); 
+}
+
+/* ====================下菜单提示======================= */
+
+
+
+/* ========================用户页面============================ */
+.user_div{text-align: center;margin:0;padding-top:10px;background-color: #FFFFFF;;width: 99.8%;height: auto;border: 0px solid #BBBBBB;}
+.user_button_div{margin-top: 15px;}
+.user_button_div input{border: 1px solid #BBBBBB;width: 50px;height: 26px;cursor: pointer;}
+.user_table{width:auto;height:auto;margin-left:auto;margin-right:auto;
+margin-top:10px;margin-bottom:30px;border: 2px solid #BBBBBB;border-collapse:collapse;}
+.user_table_tr{border: 1px solid #BBBBBB;}
+.user_table_tr td{border: 1px solid #BBBBBB;}
+
+/* ========================用户页面-add============================ */
+.user_add_div{border: 0px solid #BBBBBB;margin-top:10px;margin-bottom: 30px;}
+.user_input_text{width: 100%;height: 20px;border: 0px;padding-left: 0px;}
+.user_add_table tr td{padding: 0px;}
+
+/* ========================查询页面-query=========================  */
+.user_query_button_div{}
+.user_query_input_text{width: 100px;height: 20px;border: 0px;margin:0px;padding-left: 0px;}
+
+
+
+
