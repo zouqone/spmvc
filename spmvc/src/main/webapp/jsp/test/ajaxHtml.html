@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajax</title>
+<script type="text/javascript" src="../../js/jquery/jquery-2.0.3.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+
+<script type="text/javascript">
+
+function ajaxService(urls,data,async,callback){
+	var info = null;
+		async = async==null?false:async;
+		jQuery.ajax({  
+			url: urls, async : async,type: "POST",dataType : 'xml',
+			contentType:'text/xml;charset=utf-8',
+			data : data,
+			success: function(response) {
+				info = response;
+				if(callback){
+					callback(info);
+				}
+			},
+			error: function(e){alert(e);}
+		});
+		return info;
+}
+
+function getService(){
+	var message = null;
+	
+    var url = "http://localhost:1212/hello";
+	//var url = "http://localhost:6789/hello";
+	
+    var data = getData();
+    //message = ajaxService(url,data);
+    /**/
+    message = ajaxRequest({
+		url : url,type : "POST",data : data,
+		ContentType : "text/xml;charset=UTF-8",success : successfun
+	});
+	
+	jQuery('#message').text(message);
+}
+
+function successfun(res,xhr){
+
+	alert(res);
+}
+
+function getData(){
+	var dataStr = jQuery('#sendParam').text();
+	
+	return dataStr;
+}
+
+jQuery(document).ready(function(){
+    var name="sss";
+	var xml = 
+		'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"'
+		+' xmlns:q0="http://webservice.test.com/" '
+		+'xmlns:xsd="http://www.w3.org/2001/XMLSchema"'
+		+' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' 
+        + '<soapenv:Body>'
+		+'<q0:sayHello>'
+		+'<arg0>'
+		+name
+		+'</arg0>'
+		+'</q0:sayHello>'
+		+'</soapenv:Body>'
+		+'</soapenv:Envelope>';
+     
+     jQuery('#sendParam').text(xml);
+	
+});
+
+</script>
+</head>
+<body>
+
+<center><h2>获取WebService</h2></center> 
+
+<br><br>
+
+<div>
+		<table>
+			<tr>
+				<td>请求信息</td>
+				<td rowspan="2">
+					<input type="button" name="ajax" value="发送" onclick="getService()">
+					
+				</td>
+				<td>返回信息</td>
+			</tr>
+			<tr>
+				<td><textarea id="sendParam" rows="10" cols="60"></textarea></td>
+				<!-- <td></td> -->
+				<td><textarea id="message" rows="10" cols="40"></textarea></td>
+			</tr>
+		</table>
+
+	</div>
+</body>
+</html>

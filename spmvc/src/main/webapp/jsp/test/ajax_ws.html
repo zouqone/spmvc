@@ -1,0 +1,72 @@
+<html>
+	<head>
+	<meta charset="UTF-8">
+			<title>通过ajax调用WS</title>
+			
+			<script>
+				var xhr ;
+	    	function sendRequest(){
+	    			var name = document.getElementById('name').value;
+	    		
+	    	 	xhr = new ActiveXObject("Microsoft.XMLHTTP");
+				//xhr = getAjaxHttp();
+	    	 	//WS服务访问地址
+	    		var url = "http://localhost:1212/hello";
+	    		
+	    		//构造请求体
+	    		var requestBody = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:q0="http://ws.itcast.cn/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">' + 
+														'<soapenv:Body><q0:sayHello><arg0>'+name+'</arg0></q0:sayHello></soapenv:Body></soapenv:Envelope>';
+	    		
+	    		
+	    		//打开连接
+	    		xhr.open("POST",url,true);
+	    		
+	    		//设置请求头 Content-Type:text/xml;charset=UTF-8
+	    		xhr.setRequestHeader("Content-Type","text/xml;charset=UTF-8");
+	    		
+	    		//设置回调函数
+	    		xhr.onreadystatechange = _back;
+	    		
+	    		//发送请求
+	    		xhr.send(requestBody);
+	    	}
+	    	
+	    	//定义回调函数
+    	function _back(){
+    		
+    		if(xhr.readyState == 4){
+    			if(xhr.status == 200){
+    				var v = xhr.responseXML;
+    				var ele = v.getElementsByTagName('return')[0];
+    				alert(ele.text);
+    			}
+    		}
+    	}
+		
+		/**
+ * 得到ajax对象
+ */
+function getAjaxHttp(){
+	var xmlHttp = null;
+	if(window.XMLHttpRequest){
+		//非IE浏览器及IE7(7.0及以上版本)，用xmlhttprequest对象创建
+		 xmlHttp = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		//IE(6.0及以下版本)浏览器用activexobject对象创建,如果用户浏览器禁用了ActiveX,可能会失败.
+		xmlHttp = new ActiveXObject("Microsoft.XMLHttp");
+	} else{
+		try{
+			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+		}catch(e){
+			alert("您的浏览器不支持AJAX！");
+		}
+	}
+	return xmlHttp;
+}
+			</script>
+		</head>
+		<body>
+				<input type="text" id="name">
+				<input type="button" value="发送请求" onclick="sendRequest();">
+			</body>
+</html>

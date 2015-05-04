@@ -1158,8 +1158,8 @@
             mozilla: /mozilla/.test(userAgent) && !/(compatible|webkit)/.test(userAgent)
         };
     }
-})(jQuery);﻿
-/**
+})(jQuery);
+﻿/**
 * jQuery ligerUI 1.2.5
 * 
 * http://ligerui.com
