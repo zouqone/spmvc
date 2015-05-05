@@ -47,8 +47,8 @@
 	<!-- 配置事务切入点 -->
 	<aop:config>
 		<!-- 切入点指明了在执行Service的所有方法时产生事务拦截操作 -->
-		<!-- 系统内部拦截 -->
-		<aop:pointcut id="targetMethod" expression="execution(* com.mc.sys.service.impl.*.*(..))" />
+		<!-- 系统内部拦截  execution(* com.mc.sys.service.impl.*.*(..)) OR  -->
+		<aop:pointcut id="targetMethod" expression="execution(* com.mc..*.*(..))" />
 		
 		<!-- 定义了将采用何种拦截操作，这里引用到 txAdvice -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="targetMethod" />

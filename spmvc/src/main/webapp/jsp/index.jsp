@@ -24,6 +24,10 @@ function addUser(){
 	var url = baseUrl+"/jsp/sys/user/user.jsp?rk="+Math.random();
 	jQuery('#frameid').attr('src',url);
 }
+function addFile(){
+	var url = baseUrl+"/jsp/test/filetest.jsp?rk="+Math.random();
+	jQuery('#frameid').attr('src',url);
+}
 </script>
 <style type="text/css">
 body {
@@ -44,7 +48,7 @@ body {
  	<div position="top" style="height:50px;vertical-align: bottom;padding: 5px;">
 		<div style="text-align: center;font-size: 16px;font-weight: bolder;">系统管理</div>
 		<input type="button" name="add" value="用戶管理" onclick="addUser()">
-		
+		<input type="button" name="file" value="附件" onclick="addFile()">
 	</div>
 	<div position="left">
 		<div id="treeNodeContain" class="zTreeDemoBackground left"  style="overflow:auto ;width: 225px; height: 440px;margin:0px;padding-left: 10px;">
