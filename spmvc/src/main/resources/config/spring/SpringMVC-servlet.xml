@@ -37,7 +37,7 @@
 	</mvc:interceptors>
 
 	<!-- SpringMVC @controller组件检测,去除掉@Service注解，注意use-default-filters="false"-->
-	<context:component-scan base-package="com.mc.app.controller,com.mc.sys.controller,com.mc.framework.file.controller" use-default-filters="false">
+	<context:component-scan base-package="com.mc.app.controller,com.mc.framework.*.controller" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 

@@ -18,7 +18,7 @@
 	<!-- 用注解方式注入bean -->
 	<context:annotation-config />
 	<!-- 基于注解自动扫描组件 -->
-	<context:component-scan base-package="com.mc" annotation-config="true">  
+	<context:component-scan base-package="com.mc.framework,com.mc.app" annotation-config="true">  
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan> 
 
@@ -73,16 +73,16 @@
                 
                 <prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop>
                 <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
-                
-                
-                
+				                
 			</props>
 		</property>
-		<property name="packagesToScan">
+		<!-- <property name="packagesToScan">
 			<list>
-				<value>com.mc</value>
+				<value>com.mc.framework.sys</value>
+				<value>com.mc.app</value>
 			</list>
-		</property>
+		</property> -->
+		<property name="packagesToScan" value="com.mc.framework.*.model,com.mc.app"/>
 	</bean>
 
 	<!-- 注册Spring的模版对象 -->
