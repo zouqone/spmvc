@@ -17,26 +17,8 @@ if(redirect==1){
 
 jQuery(document).ready(function(){
 	jQuery("#index_layout").ligerLayout({ leftWidth: 230,topHeight : 50,bottomHeight:30 });
-	var height = $(".l-layout-center").height();
-	initAccordion(height);
-	initCard(height);
+	
 });
-
-function initAccordion(height){
-	$("#accordion1").ligerAccordion({
-		height: height - 24, speed: null
-	});
-}
-
-function initCard(height){
-	$("#framecenter").ligerTab({
-		height: height,
-		showSwitchInTab : true,
-		showSwitch: true
-		
-	});
-}
-
 
 function addUser(){
 	var url = baseUrl+"/jsp/sys/user/user.jsp?rk="+Math.random();
@@ -57,6 +39,7 @@ body {
 .l-table-edit-td{ padding:4px;}
 .l-button-submit,.l-button-reset{width:80px; float:left; margin-left:10px; padding-bottom:2px;}
 .l-verify-tip{ left:230px; top:120px;}
+
 </style>
 </head>
 <body>
@@ -67,36 +50,14 @@ body {
 		<input type="button" name="add" value="用戶管理" onclick="addUser()">
 		<input type="button" name="file" value="附件" onclick="addFile()">
 	</div>
-	<div position="left" title="主要菜单" id="accordion1">
-		<div id="systemmanage" title="系统管理" class="l-scroll">
-			<ul>
-				<li>用户</li> 
-				<li>用户组</li>
-				<li>角色</li>
-				<li>权限</li>
-				<li>人员信息</li>
-			</ul>
-		</div>
-		<div id="functionid" title="功能节点">
-			<ul>
-				<li>列表一</li>
-				<li>列表二</li>
-				<li>列表三</li>
-				<li>列表四</li>
-				<li>列表五</li>
-			</ul>
-		</div>
-		<div id="appid" title="应用管理">
-			<ul>
-				<li>列表一</li>
-				<li>列表二</li>
-				<li>列表三</li>
-				<li>列表四</li>
-				<li>列表五</li>
+	<div position="left">
+		<div id="treeNodeContain" class="zTreeDemoBackground left"  style="overflow:auto ;width: 225px; height: 440px;margin:0px;padding-left: 10px;">
+			<ul	id="treeRootNode" class="ztree" style="height: 400px;width: 200px;">
+				
 			</ul>
 		</div>
 	</div>
-	<div position="center" id="framecenter" title="组件分类信息">
+	<div position="center" title="组件分类信息">
 			<div tabid="home" title="我的主页"  >
                 <iframe frameborder="0" id="frameid" style="height:500px;width: 800px;" src=""></iframe>
             </div> 		

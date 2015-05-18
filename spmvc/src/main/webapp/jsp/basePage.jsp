@@ -32,7 +32,7 @@ if(loginUser!=null&&!loginUser.trim().equals("")&&"1".equals(isAuth)){
 
 <!-- ligerUI  -->
 <script type="text/javascript" src="<%=baseUrl%>/js/ligerUI/js/core/base.js" ></script>
-<script type="text/javascript" src="<%=baseUrl%>/js/ligerUI/js/ligerui.all.js" ></script>
+<script type="text/javascript" src="<%=baseUrl%>/js/ligerUI/js/ligerui.min.js" ></script>
 
 <!-- zTree -->
 <script type="text/javascript" src="<%=baseUrl%>/js/zTree_v3/jquery.ztree.core-3.5.js"></script>

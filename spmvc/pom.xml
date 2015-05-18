@@ -18,7 +18,7 @@
 		<org.codehaus.jackson.version>1.9.13</org.codehaus.jackson.version>
 		<org.apache.cxf.version>3.0.4</org.apache.cxf.version>
 		<org.springframework.ws.version>2.2.1.RELEASE</org.springframework.ws.version>
-		
+		<org.apache.httpcomponents.version>4.4.1</org.apache.httpcomponents.version>
 	</properties>
 
 	<dependencies>
@@ -334,6 +334,14 @@
 			<artifactId>spring-ws-security</artifactId>
 			<version>${org.springframework.ws.version}</version>
 		</dependency>
+		
+		<!-- httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${org.apache.httpcomponents.version}</version>
+		</dependency>
+		
 		
 	</dependencies>
 	<build>
