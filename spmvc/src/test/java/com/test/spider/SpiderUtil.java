@@ -1,6 +1,7 @@
 package com.test.spider;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,10 +18,21 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class SpiderUtil {
 
-	public static void saveHtml(String filePath, String str) {
+	public static void saveHtml(String filePath, String str){
+		saveHtml(filePath, str, null);
+	}
+	
+	public static void saveHtml(String filePath, String str,String encode) {
 		// TODO Auto-generated method stub
+		if(encode == null){
+			encode = "utf-8";
+		}
 		try {
-			OutputStreamWriter out =new OutputStreamWriter(new FileOutputStream(filePath,true),"utf-8");
+			File file = new File(filePath);
+			if(file.exists()){
+				file.delete();
+			}
+			OutputStreamWriter out =new OutputStreamWriter(new FileOutputStream(filePath,true),encode);
 			out.write(str);
 			System.out.println(str);
 			out.close();

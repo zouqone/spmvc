@@ -23,6 +23,7 @@ public class SpiderTest {
 		
 		String filePath = "D:/temp/hao123.html";
 		String urlStr = "http://www.hao123.com/";
+		urlStr = "http://www.sina.com.cn/";
 		URL url = null;
 		try {
 			url = new URL(urlStr);
